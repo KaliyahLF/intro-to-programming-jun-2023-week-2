@@ -11,6 +11,10 @@ export const routes: Routes = [
         component: BankAccountComponent
     },
     {
+        path: 'shopping',
+        loadChildren: () => import('./features/shopping-list/shopping-list.routes').then(m => m.SHOPPING_LIST_ROUTES)
+    },
+    {
         path: '**',
         redirectTo: 'home'
     }
