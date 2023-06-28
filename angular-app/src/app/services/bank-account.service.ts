@@ -8,7 +8,7 @@ export class BankAccount {
 
 
     constructor(private bonusCalculator: BonusCalculator) {
-        let savedBalance = localStorage.getItem('balance');
+        const savedBalance = localStorage.getItem('balance');
         if (savedBalance != null) {
             this.balance.set(parseFloat(savedBalance));
         }
@@ -25,7 +25,7 @@ export class BankAccount {
     makeDeposit(amount: number) {
         // send it to an API,
         // calculate a bonus
-        let bonus = this.bonusCalculator.calculateBonusForDepositOn(this.balance(), amount);
+        const bonus = this.bonusCalculator.calculateBonusForDepositOn(this.balance(), amount);
         this.balance.set(this.balance() + amount + bonus);
 
     }

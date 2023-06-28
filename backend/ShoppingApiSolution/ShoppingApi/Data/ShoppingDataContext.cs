@@ -1,0 +1,15 @@
+﻿
+using Microsoft.EntityFrameworkCore;
+namespace ShoppingApi.Data;
+
+public class ShoppingDataContext :DbContext
+{
+    public ShoppingDataContext(DbContextOptions<ShoppingDataContext> options): base(options){ }
+    public DbSet<StatusEntity> StatusMessages { get; set; }
+}
+public class StatusEntity
+{
+    public int Id { get; set; }
+    public string Message { get; set; } = string.Empty;
+    public DateTimeOffset LastChecked { get; set; }
+}
