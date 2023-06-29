@@ -1,17 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShoppingApi.Data;
 
-
-
 namespace ShoppingApi.Controllers.ShoppingList;
-
-
 
 public class PostgresShoppingManager : IManageTheShoppingList
 {
     private readonly ShoppingDataContext _context;
-
-
 
     public PostgresShoppingManager(ShoppingDataContext context)
     {
@@ -30,11 +24,7 @@ public class PostgresShoppingManager : IManageTheShoppingList
         _context.ShoppingList.Add(entityToAdd);
         await _context.SaveChangesAsync();
 
-
-
         // SLE -> SLIM
-
-
 
         var response = new ShoppingListItemModel
         {
@@ -43,7 +33,8 @@ public class PostgresShoppingManager : IManageTheShoppingList
             Description = entityToAdd.Description
         };
         return response;
-    } 
+    }
+
     public async Task<CollectionResponse<ShoppingListItemModel>> GetShoppingListAsync()
     {
         var results = await _context.ShoppingList
@@ -55,11 +46,25 @@ public class PostgresShoppingManager : IManageTheShoppingList
             })
             .ToListAsync();
 
-
-
         return new CollectionResponse<ShoppingListItemModel>()
         {
             Data = results
         };
+    }
+
+    public async Task<bool> MarkAsPurchasedAsync(ShoppingListItemModel request)
+    {
+        var id = int.Parse(request.Id);
+        var savedItem = await _context.ShoppingList.SingleOrDefaultAsync(item => item.Id == id);
+        if (savedItem != null)
+        {
+            savedItem.Purchased = true;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

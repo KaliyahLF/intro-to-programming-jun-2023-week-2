@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@ngrx/effects": "^16.0.1",
+    "@ngrx/entity": "^16.0.1"
+  }
+}

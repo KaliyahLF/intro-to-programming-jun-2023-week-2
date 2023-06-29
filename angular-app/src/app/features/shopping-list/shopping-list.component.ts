@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { CreateComponent } from './components/create/create.component';
 import { ListComponent } from './components/list/list.component';
 import { ShoppingListItemModel } from './models';
+import { Store } from '@ngrx/store';
+import { ShoppingFeatureEvents } from './state/feature.actions';
 
 @Component({
   selector: 'app-shopping-list',
@@ -12,12 +14,15 @@ import { ShoppingListItemModel } from './models';
   styleUrls: ['./shopping-list.component.css'],
   imports: [CommonModule, RouterModule, CreateComponent, ListComponent],
 })
+
 export class ShoppingListComponent {
   shoppingList = signal([
     { id: '1', description: 'Shampoo', purchased: false },
     { id: '2', description: 'Lettuce', purchased: true },
   ]);
-
+  constructor(private store:Store) {
+    store.dispatch(ShoppingFeatureEvents.entered());
+  }
   onItemAdded(description: string) {
     // TODO - mutate our signal.
     console.log(`We got a new item ${description}`);
