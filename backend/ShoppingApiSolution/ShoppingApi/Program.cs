@@ -21,7 +21,8 @@ builder.Services.AddDbContext<ShoppingDataContext>(options =>
 });
 
 builder.Services.AddTransient<ILookupTheStatus, StatusLookup>();
-
+builder.Services.AddScoped<ILookupTheStatus, StatusLookup>();
+builder.Services.AddScoped<ILookupTheStatus, StatusLookup>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,2 +1,8 @@
 # For more info on HTTP files go to https://aka.ms/vs/httpfile
-GET http://localhost:1338/status
+GET http://localhost:1338/shopping-list
+
+POST http://localhost:1338/shopping-list
+ContentType: application/json
+{
+  "description": "Ketchup"
+}

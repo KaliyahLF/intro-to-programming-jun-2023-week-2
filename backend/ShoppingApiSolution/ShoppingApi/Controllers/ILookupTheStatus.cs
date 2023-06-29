@@ -1,9 +1,6 @@
 ﻿namespace ShoppingApi.Controllers;
 
-public class ILookupTheStatus
+public interface ILookupTheStatus
 {
-    internal Task<GetStatusResponse> GetCurrentStatusAsync()
-    {
-        throw new NotImplementedException();
-    }
+    Task<GetStatusResponse> GetCurrentStatusAsync();
 }
