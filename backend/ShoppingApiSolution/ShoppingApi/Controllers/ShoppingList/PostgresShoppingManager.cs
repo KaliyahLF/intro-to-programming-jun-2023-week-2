@@ -61,8 +61,7 @@ public class PostgresShoppingManager : IManageTheShoppingList
             savedItem.Purchased = true;
             await _context.SaveChangesAsync();
             return true;
-        }
-        else
+        } else
         {
             return false;
         }

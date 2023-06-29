@@ -1,4 +1,4 @@
-﻿sing Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ShoppingApi.Data;
 
 namespace ShoppingApi.Controllers;

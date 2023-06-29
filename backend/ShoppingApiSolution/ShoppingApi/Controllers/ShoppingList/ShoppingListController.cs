@@ -15,9 +15,9 @@ public class ShoppingListController : ControllerBase
     {
 
         CollectionResponse<ShoppingListItemModel> response = await _shoppingListManager.GetShoppingListAsync();
-
+        
         return Ok(response);
-
+        
     }
 
     [HttpPost("/shopping-list")]
@@ -26,10 +26,9 @@ public class ShoppingListController : ControllerBase
         if (ModelState.IsValid)
         {
             ShoppingListItemModel response = await _shoppingListManager.AddItemAsync(model);
-
+            
             return Ok(response);
-        }
-        else
+        } else
         {
             return BadRequest();
         }
@@ -38,17 +37,16 @@ public class ShoppingListController : ControllerBase
     [HttpPut("/completed-shopping-items/{itemId}")]
     public async Task<ActionResult> MarkItemAsPurchased(string itemId, [FromBody] ShoppingListItemModel request)
     {
-        if (itemId != request.Id)
+        if(itemId != request.Id)
         {
             return BadRequest();
         }
 
         bool wasUpdated = await _shoppingListManager.MarkAsPurchasedAsync(request);
-        if (wasUpdated)
+        if(wasUpdated)
         {
             return NoContent();
-        }
-        else
+        } else
         {
             return NotFound();
         }
