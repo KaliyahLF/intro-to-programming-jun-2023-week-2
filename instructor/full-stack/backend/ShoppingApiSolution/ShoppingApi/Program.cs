@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ShoppingApi.Controllers;
+using ShoppingApi.Controllers.ShoppingList;
 using ShoppingApi.Data;
 
 
@@ -19,7 +20,8 @@ builder.Services.AddDbContext<ShoppingDataContext>(options =>
     options.UseNpgsql(shoppingConnectionString);
 });
 
-builder.Services.AddTransient<ILookupTheStatus, StatusLookup>();
+builder.Services.AddScoped<ILookupTheStatus, StatusLookup>();
+builder.Services.AddScoped<IManageTheShoppingList, PostgresShoppingManager>();
 
 var app = builder.Build();
 
