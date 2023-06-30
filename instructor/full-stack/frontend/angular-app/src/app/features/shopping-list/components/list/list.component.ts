@@ -14,7 +14,7 @@ import { ListEvents } from '../../state/list.actions';
 })
 export class ListComponent {
   list = this.store.selectSignal(selectShoppingListModel);
-
+  // list$ = this.store.select(selectShoppingListModel);
   constructor(private store: Store) {}
 
   markPurchased(item: ShoppingListItemModel) {
