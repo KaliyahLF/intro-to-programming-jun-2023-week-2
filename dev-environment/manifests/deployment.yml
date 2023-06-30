@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopping-database
+  namespace: hypertheory
+spec:
+  selector:
+    matchLabels:
+      app: shopping-database
+  template:
+    metadata:
+      labels:
+        app: shopping-database
+    spec:
+      containers:
+      - name: shopping-database
+        image: postgres:15.2-bullseye
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5432
+        env:
+          - name: POSTGRES_PASSWORD
+            value: password

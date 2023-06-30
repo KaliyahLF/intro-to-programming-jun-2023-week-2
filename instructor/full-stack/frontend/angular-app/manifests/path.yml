@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: angular-app-service-ingress
+  labels:
+    name: angular-app-service-ingress
+spec:
+  rules:
+  - host: www.hypertheory.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: angular-app-service
+            port: 
+              number: 80

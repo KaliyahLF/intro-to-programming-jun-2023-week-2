@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopping-api
+spec:
+  selector:
+    matchLabels:
+      app: shopping-api
+  template:
+    metadata:
+      labels:
+        app: shopping-api
+    spec:
+      containers:
+      - name: shopping-api
+        image: jeffrygonzalez/shopping-api-jun-2023:v0.1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        env: 
+          - name: ConnectionStrings__shopping
+            value: "Host=shopping-database-service;Database=shopping_dev;Username=postgres;Password=password"
